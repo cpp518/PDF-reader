@@ -30,12 +30,21 @@
         <servlet-name>showFileServlet</servlet-name>
         <servlet-class>showFileServlet</servlet-class>
     </servlet>
-    
+
     <servlet>
         <servlet-name>downloadFileServlet</servlet-name>
         <servlet-class>downloadFileServlet</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>uploadBookMarksServlet</servlet-name>
+        <servlet-class>uploadBookMarksServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>SetFileStateServlet</servlet-name>
+        <servlet-class>SetFileStateServlet</servlet-class>
+    </servlet>
     
     <servlet-mapping>
         <servlet-name>getUploadFileServlet</servlet-name>
@@ -65,7 +74,14 @@
         <servlet-name>downloadFileServlet</servlet-name>
         <url-pattern>/download</url-pattern>
     </servlet-mapping>
-    
+    <servlet-mapping>
+        <servlet-name>uploadBookMarksServlet</servlet-name>
+        <url-pattern>/uploadBookMarks</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SetFileStateServlet</servlet-name>
+        <url-pattern>/SetFileState</url-pattern>
+    </servlet-mapping>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>

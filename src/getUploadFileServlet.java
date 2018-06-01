@@ -37,7 +37,7 @@ public class getUploadFileServlet extends HttpServlet {
 
         // 获取user的id
         int userId = 0;
-        userId = login.getId(username);
+        userId = login.getId();
         if(!login.getResult()){
             switch(userId){
                 case 1:j = new returnJson(2,200,401);break;

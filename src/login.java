@@ -6,6 +6,7 @@ public class login {
     private static String sql1="SELECT * FROM user WHERE username = ";
     private static String sql2="' AND passwd= '";
     private static Boolean result;
+    private static int id = 0;
 
     public static int in(String username,String passwd){
         ResultSet rs = null;
@@ -25,7 +26,7 @@ public class login {
                 try{
                     String sql = "UPDATE user SET lastlogindate=now() WHERE username = '"+username+"'";
                     database.ExecuteUpdate(sql);
-                    System.out.println(sql);
+                    //System.out.println(sql);
                 }catch(Exception e){
                     database.rollback();
                     if(!database.getResult()){
@@ -33,6 +34,15 @@ public class login {
                     }
                 }
                 database.commit();
+                try{
+                    String sql = "SELECT id from user where username=" + "'" + username + "'";
+                    rs = database.Execute(sql);
+                }catch(Exception e){
+                    return 2;
+                }
+                database.commit();
+                rs.next();
+                id = rs.getInt("id");
                 result = true;
                 return 3;
             }
@@ -45,33 +55,8 @@ public class login {
 
     }
 
-    public static int getId(String username){
-        ConnectDatabase con = null;
-        ResultSet rs = null;
-        returnJson j = null;
-        int id  = 0;
-        result = false;
-        try {
-            con = new ConnectDatabase();
-        }catch(Exception e){
-            return 1;
-        }
-        try {
-            rs = con.Execute("SELECT id from user where username=" + "'" + username + "'");
-            con.commit();
-        }catch(Exception e){
-            return 2;
-        }
-        try {
-            rs.next();
-            id = rs.getInt("id");
-            result = true;
-            System.out.println(result);
-            System.out.println(id);
-            return id;
-        }catch(Exception e){
-            return 5;
-        }
+    public static int getId(){
+        return id;
     }
 
     public static boolean getResult(){

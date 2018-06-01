@@ -24,9 +24,13 @@
       <br>
       <a href="getMyupload.jsp">查看上传的文件</a>
       <br>
-      <a href="/pdfpj/ShowFile">所有上传的文件</a>
+      <a href="<%=request.getContextPath()%>/ShowFile">所有上传的文件</a>
       <br>
       <a href="download.jsp">下载文件</a>
+      <br>
+      <a href="UploadBookMark.jsp">添加书签</a>
+      <br>
+      <a href="SetFileState.jsp">更改书的状态</a>
   </center>
 
   </body>

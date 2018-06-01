@@ -12,7 +12,7 @@
 </head>
 <body>
 <center>
-    <form action="/pdfpj/register" method="POST" >
+    <form action="<%=request.getContextPath()%>/register" method="POST" >
         账号: <input type="text" name="name">
         <br />
         昵称：<input type="text" name="nick">

@@ -18,6 +18,7 @@ public class uploadBookMarksServlet extends HttpServlet {
         returnJson j = null;
         PrintWriter out = response.getWriter();
         //用户登录验证
+        String sql = null;
         String username = request.getParameter("username");
         String passwd = request.getParameter("passwd");
         int result = 0;
@@ -33,8 +34,67 @@ public class uploadBookMarksServlet extends HttpServlet {
             return;
         }
 
-        //
+        //上传笔记
 
+        //用id判断是否存在
+        String id = request.getParameter("id");
+        //System.out.println(id);
+        if(id == ""){
+            sql = "INSERT INTO bookmarks(userid,bookid,createdate,lastchangedate,title,content,pagenum) values ("+login.getId()
+                    +","+request.getParameter("bookid")
+                    +",now(),now()"
+                    +",\""+new String(request.getParameter("title").getBytes("ISO-8859-1"),"utf-8")
+                    +"\",\""+new String(request.getParameter("content").getBytes("ISO-8859-1"),"utf-8")
+                    +"\","+request.getParameter("pagenum")+")";
+        }
+        else{
+            sql = "update bookmarks SET lastchangedate=now(),"
+                    + " title = \""+ new String(request.getParameter("title").getBytes("ISO-8859-1"),"utf-8") +"\""
+                    + ", content = \"" + new String(request.getParameter("content").getBytes("ISO-8859-1"),"utf-8") +"\""
+                    + ", pagenum = " + request.getParameter("pagenum")
+                    + " where id = " + id;
+        }
+        System.out.println(sql);
+        try{
+            con = new ConnectDatabase();
+        }catch(Exception e){
+            j = new returnJson(7,200,401);
+            out.println(j.result());
+            return;
+        }
+        //执行sql语句
+        try{
+            con.ExecuteUpdate(sql);
+        }catch (Exception e){
+            con.rollback();
+            if(!con.getResult()){
+                j = new returnJson(7,200,410);
+            }
+            else {
+                j = new returnJson(7, 200, 404);
+            }
+            out.println(j.result());
+            return;
+        }
+        //事务提交
+        try{
+            con.commit();
+            System.out.println(con.getResult());
+        }catch(Exception e){
+            j = new returnJson(7,200,411);
+            out.println(j.result());
+            return;
+        }
 
+        //成功
+        j = new returnJson(7,100,400);
+        out.println(j.result());
+        return;
+
+    }
+
+    public void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException{
+        doPost(request,response);
+        return;
     }
 }

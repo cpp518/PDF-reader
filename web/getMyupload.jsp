@@ -11,7 +11,7 @@
     <title>获取pdf文件</title>
 </head>
 <body>
-      <form action="/pdfpj/getUploadFile" method="post" >
+      <form action="<%=request.getContextPath()%>/getUploadFile" method="post" >
           输入用户名：<input type="text" name="username" />
           <br>
           输入密  码：<input type="text" name="passwd" />

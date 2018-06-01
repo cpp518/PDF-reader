@@ -46,6 +46,8 @@ pagenum 表示书签所在位置
 state 表示书签是否共享：0 不共享
                         1 仅好友可见
 						2 所有人可见
+						
+
 
 evaluation
 

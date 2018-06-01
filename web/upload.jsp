@@ -11,7 +11,7 @@
     <title>文件上传实例</title>
 </head>
 <body>
- <form method="POST" action="/pdfpj/UploadServlet" enctype="multipart/form-data" accept-charset="utf-8">
+ <form method="POST" action="<%=request.getContextPath()%>/UploadServlet" enctype="multipart/form-data" accept-charset="utf-8">
      用户名：<input type="text" name="username">
      <br>
      密 码：<input type="text" name="passwd">

@@ -11,7 +11,7 @@
     <title>下载文件</title>
 </head>
 <body>
-    <form action="/pdfpj/download" method="post">
+    <form action="<%=request.getContextPath()%>/download" method="post">
         输入要下载的文件序号：<input type="text" name="index" />
         <input type="submit" value="下载"/>
     </form>

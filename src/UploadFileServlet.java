@@ -86,8 +86,6 @@ public class UploadFileServlet extends HttpServlet {
         }
         // 配置上传参数
 
-
-
         // 设置最大文件上传值
         upload.setFileSizeMax(MAX_FILE_SIZE);
 
@@ -113,7 +111,7 @@ public class UploadFileServlet extends HttpServlet {
                         //System.out.println(fileName);
                         ConnectDatabase con = new ConnectDatabase();
                         ResultSet rs = null;
-                        int id = login.getId(username);
+                        int id = login.getId();
                        /* try{
                             sql = "UPDATE user SET lastlogindate=now() WHERE id="+id;
                             con.ExecuteUpdate(sql);
