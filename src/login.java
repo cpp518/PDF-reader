@@ -9,6 +9,7 @@ public class login {
 
     public static int in(String username,String passwd){
         ResultSet rs = null;
+        result = false;
         try{
             database = new ConnectDatabase();
         }catch(Exception e) {
@@ -32,6 +33,7 @@ public class login {
                     }
                 }
                 database.commit();
+                result = true;
                 return 3;
             }
             else{
@@ -56,6 +58,7 @@ public class login {
         }
         try {
             rs = con.Execute("SELECT id from user where username=" + "'" + username + "'");
+            con.commit();
         }catch(Exception e){
             return 2;
         }
@@ -63,6 +66,8 @@ public class login {
             rs.next();
             id = rs.getInt("id");
             result = true;
+            System.out.println(result);
+            System.out.println(id);
             return id;
         }catch(Exception e){
             return 5;

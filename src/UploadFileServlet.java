@@ -50,6 +50,7 @@ public class UploadFileServlet extends HttpServlet {
         }*/
 
         //用户登录判断
+        response.setContentType("text/html; charset=utf-8");
         PrintWriter out = response.getWriter();
         String sql;
         returnJson j = null;
@@ -129,8 +130,8 @@ public class UploadFileServlet extends HttpServlet {
                             return;
                         }
                         con.commit();*/
-                        if(!con.getResult()){
-                            j = new returnJson(2,200,411);
+                        if(!login.getResult()){
+                            j = new returnJson(2,200,411,"获取id错误");
                             out.println(j.result());
                             return;
                         }
@@ -160,7 +161,7 @@ public class UploadFileServlet extends HttpServlet {
 
                                 con.commit();
                                 if(!con.getResult()){
-                                    j = new returnJson(2,200,411);
+                                    j = new returnJson(2,200,411,"数据库插入错误");
                                     out.println(j.result());
                                     return;
                                 }
