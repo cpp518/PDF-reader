@@ -75,10 +75,10 @@ public class UploadFileServlet extends HttpServlet {
         String passwd = formItems.get(1).getString();
         result = login.in(username,passwd);
         switch(result){
-            case 1:j = new returnJson(3,200,401);break;
-            case 2:j = new returnJson(3,200,404);break;
-            case 4:j = new returnJson(3,200,407);break;
-            case 5:j = new returnJson(3,200,405);break;
+            case 1:j = new returnJson(2,200,401);break;
+            case 2:j = new returnJson(2,200,404);break;
+            case 4:j = new returnJson(2,200,407);break;
+            case 5:j = new returnJson(2,200,405);break;
         }
         if(result!=3){
             out.println(j.result());

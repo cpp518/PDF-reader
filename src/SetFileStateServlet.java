@@ -18,10 +18,10 @@ public class SetFileStateServlet extends HttpServlet {
         int result = 0;
         result = login.in(username,passwd);
         switch(result){
-            case 1:j = new returnJson(4,200,401);break;
-            case 2:j = new returnJson(4,200,404);break;
-            case 4:j = new returnJson(4,200,407);break;
-            case 5:j = new returnJson(4,200,408);break;
+            case 1:j = new returnJson(10,200,401);break;
+            case 2:j = new returnJson(10,200,404);break;
+            case 4:j = new returnJson(10,200,407);break;
+            case 5:j = new returnJson(10,200,408);break;
         }
         if(result!=3){
             out.println(j.result());

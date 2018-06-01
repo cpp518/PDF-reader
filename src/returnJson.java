@@ -54,7 +54,7 @@ public class returnJson {
     public void add(Object... key){
        // System.out.println("999999999      " + Integer.parseInt(String.valueOf(key[0])));
        //  temp = new LinkedHashMap<>();
-         answer.put("book"+key[0].toString(),toJson(key));
+         answer.put("num"+key[0].toString(),toJson(key));
 
     }
 

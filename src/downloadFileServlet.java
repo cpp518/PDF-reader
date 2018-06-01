@@ -19,8 +19,6 @@ public class downloadFileServlet extends HttpServlet {
         ServletOutputStream outps = null;
         returnJson j = null;
         InputStream fileIps = null;
-       // path = "D:/学习/JAVA编程/javaweb/pdfpj/out/artifacts/pdfpj_war_exploded/upload/pdf/53/1.pdf";
-       // path = "file";
         File file = new File(path);
         System.out.println(file.exists());
         response.setHeader("Content-Disposition","attachment;filename=1.pdf");

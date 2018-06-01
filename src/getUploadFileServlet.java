@@ -40,9 +40,9 @@ public class getUploadFileServlet extends HttpServlet {
         userId = login.getId();
         if(!login.getResult()){
             switch(userId){
-                case 1:j = new returnJson(2,200,401);break;
-                case 2:j = new returnJson(2,200,404);break;
-                case 5:j = new returnJson(2,200,405);break;
+                case 1:j = new returnJson(4,200,401);break;
+                case 2:j = new returnJson(4,200,404);break;
+                case 5:j = new returnJson(4,200,405);break;
             }
             out.println(j.result());
             return;

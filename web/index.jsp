@@ -31,6 +31,8 @@
       <a href="UploadBookMark.jsp">添加书签</a>
       <br>
       <a href="SetFileState.jsp">更改书的状态</a>
+      <br>
+      <a href="getMybookmarks.jsp">查看书签</a>
   </center>
 
   </body>
