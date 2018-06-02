@@ -18,9 +18,13 @@ Param:username,passwd
 return:{id{1:{},2:{},3:{}}}
 
 
-/getFIle   下载文件
+/getFile   下载文件
 Method:POST
 Param:username,passwd
+
+/deleteFile 删除上传的文件
+Method:POST
+Param:username,passwd,bookid
 
 /showFile  展示所有的pdf文件
 Method:Post,Get

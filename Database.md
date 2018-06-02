@@ -16,13 +16,13 @@ int primary key|varchar(20)| varchar(20)|varchar(20)|datetime      | datetime   
 UPDATE user set LastloginDate = now() where name = ''
 
 book:
-----------------------------------------------------------------------------------------------------------------------------------------------
-userid  | bookid    | bookname  | author       | introduction | label     |introImage   |   type       | registerDate | page      |   state  |
---------|-----------|-----------|--------------|--------------|-----------|-------------|--------------|--------------|-----------|----------|
-int     |int        |varchar(50)|varchar(50)   |varchar(2000) |varchar(50)| tinyint     |  varchar(50) |  datetime    | smallint  |  tinyint |
---------|-----------|-----------|--------------|--------------|-----------|-------------|--------------|--------------|-----------|-----------
-not null|not null   |not null   | not null     |not null      |not null   | default 0   | not null     | DEFAULT now()| default 0 | default 0 |
-----------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+userid  | bookid    | bookname  | author       | introduction | label     |introImage   |   type       | registerDate | page      |   state  | download |
+--------|-----------|-----------|--------------|--------------|-----------|-------------|--------------|--------------|-----------|----------|----------|
+int     |int        |varchar(50)|varchar(50)   |varchar(2000) |varchar(50)| tinyint     |  varchar(50) |  datetime    | smallint  |  tinyint | int      |
+--------|-----------|-----------|--------------|--------------|-----------|-------------|--------------|--------------|-----------|---------------------|
+not null|not null   |not null   | not null     |not null      |not null   | default 0   | not null     | DEFAULT now()| default 0 | default 0|default 0 |
+---------------------------------------------------------------------------------------------------------------------------------------------------------
 foreign key(int ) references user(id) on delete cascade;
 state表示当前pdf书籍的状态：审核中：0
                             仅自己可见：1
@@ -49,10 +49,32 @@ state 表示书签是否共享：0 不共享
 						
 
 
-evaluation
 
 
-view
--------------------------------------------------------------------------------------------------------------
-id  | userid|
+			
+PostType
+-------------------------------
+id | postid | type  | targetid|					
+---|--------|-------|---------|
+int| int    |tinyint| int     |
+-------------------------------
+帖子的类型：
+type:1-头贴，2-回帖
+targetid:当type为1:0
+         当type为2:头贴的id
 
+Type
+-------------
+id | type   |
+---|--------|
+int| tinyint|
+-------------
+
+Post
+----------------------------------------------------------------
+id | userid | title       | content       | createdate | state | 
+---|--------|-------------|---------------|------------|-------|
+int| int    | varchar(60) |varchar(2000)  |   datatime |tinyint|
+----------------------------------------------------------------
+						
+select title,content from post,posttype where bookid = targetid 

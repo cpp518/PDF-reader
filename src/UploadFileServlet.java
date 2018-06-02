@@ -167,6 +167,7 @@ public class UploadFileServlet extends HttpServlet {
                             }catch(Exception e){
 
                                 con.rollback();
+                                con.Close();
                                 if(!con.getResult()){
                                     j = new returnJson(2,200,410);
                                 }
@@ -186,6 +187,13 @@ public class UploadFileServlet extends HttpServlet {
                             sql = "SELECT MAX(bookid) FROM book";
                             rs = con.Execute(sql);
                         }catch(Exception e){
+                            try{
+                                con.Close();
+                            }catch(Exception k){
+                                j = new returnJson(2,200,413);
+                                out.println(j.result());
+                                return;
+                            }
                             j = new returnJson(2,200,404,"get max bookid error");
                             out.println(j);
                             return;
@@ -194,6 +202,7 @@ public class UploadFileServlet extends HttpServlet {
                             rs.next();
                             id = rs.getInt("MAX(bookid)");
                         }catch(Exception e){
+
                             j = new returnJson(2,200,405);
                             out.println(j.result());
                             return;
@@ -212,8 +221,16 @@ public class UploadFileServlet extends HttpServlet {
                         item.write(storeFile);
                        /* request.setAttribute("message",
                                 "文件上传成功!");*/
+                        try{
+                            con.Close();
+                        }catch (Exception e){
+                            j = new returnJson(2,100,413);
+                            out.println(j.result());
+                            return;
+                        }
                         j = new returnJson(2,100,400);
                         out.println(j.result());
+
                     }
                 }
             }

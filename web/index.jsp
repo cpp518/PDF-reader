@@ -33,6 +33,8 @@
       <a href="SetFileState.jsp">更改书的状态</a>
       <br>
       <a href="getMybookmarks.jsp">查看书签</a>
+      <br>
+      <a href="deleteFile.jsp">删除书籍</a>
   </center>
 
   </body>

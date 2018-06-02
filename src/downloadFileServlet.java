@@ -13,6 +13,7 @@ public class downloadFileServlet extends HttpServlet {
             ServletException,IOException{
         response.setCharacterEncoding("utf-8");
         response.setContentType("application/x-msdownload");
+        ConnectDatabase con = null;
       //  PrintWriter out = response.getWriter();
         String num = request.getParameter("index");
         String path = request.getSession().getServletContext().getRealPath("upload/pdf/" + num + "/1.pdf");
@@ -20,17 +21,11 @@ public class downloadFileServlet extends HttpServlet {
         returnJson j = null;
         InputStream fileIps = null;
         File file = new File(path);
-        System.out.println(file.exists());
+        //System.out.println(file.exists());
         response.setHeader("Content-Disposition","attachment;filename=1.pdf");
-        System.out.println("2");
         try{
-            System.out.println("3");
             outps = response.getOutputStream();
-            System.out.println("4");
-
             fileIps = new FileInputStream(file);
-            System.out.println("5");
-
             byte[] b = new byte[1024];
             int i= 0;
             while((i=fileIps.read(b))>0){
@@ -41,6 +36,22 @@ public class downloadFileServlet extends HttpServlet {
             out.println(j.result());*/
             outps.close();
             fileIps.close();
+            try{
+                con = new ConnectDatabase();
+            }catch(Exception e){
+                j = new returnJson(6,200,401);
+                outps.println(j.result());
+                return;
+            }
+            try{
+                String sql = "UPDATE book SET download = download + 1 WHERE bookid="+num;
+                con.ExecuteUpdate(sql);
+                con.commit();
+            }catch(Exception e){
+                j = new returnJson(6,200,404);
+                outps.println(j.result());
+                return;
+            }
             return;
         }catch(Exception e){
             /*j = new returnJson(6,200,412);

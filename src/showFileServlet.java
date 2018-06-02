@@ -18,7 +18,7 @@ public class showFileServlet extends HttpServlet {
         response.setCharacterEncoding("utf-8");
         ConnectDatabase con = null;
         ResultSet rs = null;
-        String sql = "SELECT bookid,bookname,author,introduction,label,introImage,type,registerDate,page,state from book where state=3";
+        String sql = "SELECT bookid,bookname,author,introduction,label,introImage,type,registerDate,page,state,download from book where state=3";
         try{
             con = new ConnectDatabase();
         }catch(Exception e){
@@ -48,7 +48,8 @@ public class showFileServlet extends HttpServlet {
                             "introImage",rs.getInt("introImage"),
                             "type",rs.getString("type"),
                             "registerDate",rs.getString("registerDate"),"page",rs.getInt("page"),
-                            "state",rs.getInt("state"));
+                            "state",rs.getInt("state"),
+                            "download",rs.getInt("download"));
                     num++;
 
                 }while(rs.next());
@@ -58,7 +59,7 @@ public class showFileServlet extends HttpServlet {
             else{
                 j.put("book","");
             }
-            System.out.println(j.result());
+            //System.out.println(j.result());
             out.println(j.result());
             return;
         }catch(Exception e){

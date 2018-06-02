@@ -56,7 +56,7 @@ public class getUploadFileServlet extends HttpServlet {
             return;
         }
         try{
-            sql = "SELECT bookid,bookname,author,introduction,label,introImage,type,registerDate,page,state from book where userid = '"+userId+"'";
+            sql = "SELECT bookid,bookname,author,introduction,label,introImage,type,registerDate,page,state,download from book where userid = '"+userId+"'";
             rs = con.Execute(sql);
         }catch(Exception e){
             j = new returnJson(4,200,404);
@@ -79,8 +79,8 @@ public class getUploadFileServlet extends HttpServlet {
                         "introImage",rs.getInt("introImage"),
                         "type",rs.getString("type"),
                         "registerDate",rs.getString("registerDate"),"page",rs.getInt("page"),
-                        "state",rs.getInt("state"));
-
+                        "state",rs.getInt("state"),
+                        "download",rs.getInt("download"));
                 num++;
                 }while(rs.next());
                 j.put("book",k);
@@ -96,7 +96,5 @@ public class getUploadFileServlet extends HttpServlet {
             out.println(j.result());
             return;
         }
-
-
     }
 }
