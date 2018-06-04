@@ -32,8 +32,10 @@ public class ConnectDatabase {
 
     public void ExecuteUpdate(String sql){
         try{
-            stat.executeUpdate(sql);
-            success = true;
+            int k = stat.executeUpdate(sql);
+           // System.out.println(k);
+            success = k>0?true:false;
+            //System.out.println(success);
             return;
         }catch(SQLException e){
             success = false;

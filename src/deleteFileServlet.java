@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 public class deleteFileServlet extends HttpServlet {
     public void doPost(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException {
         ConnectDatabase con = null;
+        response.setContentType("text/html;charset=utf-8");
         String num = request.getParameter("bookid");
         String sql = null;
         returnJson j = null;
@@ -30,7 +31,7 @@ public class deleteFileServlet extends HttpServlet {
         }
 
         //删除数据库记录
-        sql = "DELETE FROM book WHERE bookid = "+ num +"AND userid="+login.getId();
+        sql = "DELETE FROM book WHERE bookid = "+ num +" AND userid="+login.getId();
         try{
             con = new ConnectDatabase();
         }catch(Exception e){
@@ -38,9 +39,12 @@ public class deleteFileServlet extends HttpServlet {
             out.println(j.result());
             return;
         }
-
+        System.out.println(sql);
         try{
             con.ExecuteUpdate(sql);
+            if(!con.getResult()){
+                throw new Exception("error");
+            }
             con.commit();
         }catch(Exception e){
             con.rollback();
@@ -51,7 +55,7 @@ public class deleteFileServlet extends HttpServlet {
                 out.println(j.result());
                 return;
             }
-            j = new returnJson(12,200,404);
+            j = new returnJson(12,200,404,"没有权限");
             out.println(j.result());
             return;
         }
