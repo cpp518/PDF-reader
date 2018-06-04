@@ -4,6 +4,10 @@ username: pdfuser
 password: 123456
 database: pdfpj
 
+#所有内容
+mysqldump --no-defaults -u xxxx -p databasenae > filename
+#仅表结构
+mysqldump --no-defaults --opt -d -u xxxx -p databasenae > filename
 
 table:
 uesr:

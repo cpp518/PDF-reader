@@ -55,6 +55,11 @@
         <servlet-name>deleteFileServlet</servlet-name>
         <servlet-class>deleteFileServlet</servlet-class>
     </servlet>
+    
+    <servlet>
+        <servlet-name>deleteBookMarksServlet</servlet-name>
+        <servlet-class>deleteBookMarksServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>getUploadFileServlet</servlet-name>
@@ -99,6 +104,10 @@
     <servlet-mapping>
         <servlet-name>deleteFileServlet</servlet-name>
         <url-pattern>/deleteFile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deleteBookMarksServlet</servlet-name>
+        <url-pattern>/deleteBookMarks</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
