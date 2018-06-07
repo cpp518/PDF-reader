@@ -35,6 +35,9 @@
       <a href="getMybookmarks.jsp">查看书签</a>
       <br>
       <a href="deleteFile.jsp">删除书籍</a>
+      <br>
+      <a href="deleteBookMarks.jsp.jsp">删除书签</a>
+      <br>
   </center>
 
   </body>
