@@ -40,7 +40,7 @@ CREATE TABLE `book` (
   CONSTRAINT `book_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `user` (`id`) ON DELETE CASCADE,
   CONSTRAINT `book_ibfk_2` FOREIGN KEY (`userid`) REFERENCES `user` (`id`),
   CONSTRAINT `book_ibfk_3` FOREIGN KEY (`userid`) REFERENCES `user` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -65,19 +65,84 @@ CREATE TABLE `bookmarks` (
   KEY `bookid` (`bookid`),
   CONSTRAINT `bookmarks_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `user` (`id`) ON DELETE CASCADE,
   CONSTRAINT `bookmarks_ibfk_2` FOREIGN KEY (`bookid`) REFERENCES `book` (`bookid`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `post`
+--
+
+DROP TABLE IF EXISTS `post`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `post` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userid` int(11) DEFAULT NULL,
+  `title` varchar(60) DEFAULT NULL,
+  `content` varchar(2000) DEFAULT NULL,
+  `createdate` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `userid` (`userid`),
+  CONSTRAINT `post_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `poststate`
+--
+
+DROP TABLE IF EXISTS `poststate`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `poststate` (
+  `id` tinyint(4) NOT NULL,
+  `state` tinyint(4) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `table1`
+-- Table structure for table `posttie`
 --
 
-DROP TABLE IF EXISTS `table1`;
+DROP TABLE IF EXISTS `posttie`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `table1` (
-  `type` tinyint(4) DEFAULT '0',
-  `targetid` int(11) DEFAULT '0'
+CREATE TABLE `posttie` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `postid` int(11) DEFAULT NULL,
+  `type` tinyint(4) DEFAULT NULL,
+  `targetid` int(11) DEFAULT '0',
+  `state` tinyint(4) DEFAULT NULL,
+  `comefrom` int(11) DEFAULT NULL,
+  `lastdate` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `postid` (`postid`),
+  KEY `targetid` (`targetid`),
+  KEY `type` (`type`),
+  KEY `state` (`state`),
+  CONSTRAINT `posttie_ibfk_1` FOREIGN KEY (`postid`) REFERENCES `post` (`id`),
+  CONSTRAINT `posttie_ibfk_2` FOREIGN KEY (`targetid`) REFERENCES `post` (`id`),
+  CONSTRAINT `posttie_ibfk_3` FOREIGN KEY (`type`) REFERENCES `posttype` (`id`),
+  CONSTRAINT `posttie_ibfk_4` FOREIGN KEY (`state`) REFERENCES `poststate` (`id`),
+  CONSTRAINT `posttie_ibfk_5` FOREIGN KEY (`postid`) REFERENCES `post` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `posttie_ibfk_6` FOREIGN KEY (`targetid`) REFERENCES `post` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `posttie_ibfk_7` FOREIGN KEY (`type`) REFERENCES `posttype` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `posttie_ibfk_8` FOREIGN KEY (`state`) REFERENCES `poststate` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `posttype`
+--
+
+DROP TABLE IF EXISTS `posttype`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `posttype` (
+  `id` tinyint(4) NOT NULL,
+  `type` tinyint(4) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -123,4 +188,4 @@ CREATE TABLE `user` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-06-04 15:16:45
+-- Dump completed on 2018-06-08 14:36:55

@@ -65,6 +65,10 @@
         <servlet-class>postServlet</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>showFirstPostServlet</servlet-name>
+        <servlet-class>showFirstPostServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>getUploadFileServlet</servlet-name>
         <url-pattern>/getUploadFile</url-pattern>
@@ -116,6 +120,10 @@
     <servlet-mapping>
         <servlet-name>postServlet</servlet-name>
         <url-pattern>/post</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>showFirstPostServlet</servlet-name>
+        <url-pattern>/showFirstPost</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>

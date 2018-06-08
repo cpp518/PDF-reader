@@ -54,7 +54,7 @@ public class uploadBookMarksServlet extends HttpServlet {
                     + ", pagenum = " + request.getParameter("pagenum")
                     + " where id = " + id;
         }
-        System.out.println(sql);
+        //System.out.println(sql);
         try{
             con = new ConnectDatabase();
         }catch(Exception e){

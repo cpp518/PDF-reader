@@ -12,6 +12,7 @@ public class postServlet extends HttpServlet {
         ConnectDatabase con = null;
         returnJson j = null;
         String sql = null;
+        String sql2 = null;
         ResultSet rs = null;
         PrintWriter out = response.getWriter();
         //用户登录验证
@@ -19,6 +20,7 @@ public class postServlet extends HttpServlet {
         String passwd = request.getParameter("passwd");
         String type = request.getParameter("type");
         String targetid = request.getParameter("targetid");
+        String comefrom = request.getParameter("comefrom");
         int result = 0;
         int id = 0;
         result = login.in(username,passwd);
@@ -35,10 +37,10 @@ public class postServlet extends HttpServlet {
         id = login.getId();
 
         //插入数据库post表
-        String title = request.getParameter("title");
-        String content = request.getParameter("content");
+        String title = new String(request.getParameter("title").getBytes("ISO-8859-1"),"utf-8");
+        String content =new String(request.getParameter("content").getBytes("ISO-8859-1"),"utf-8");
         sql = "INSERT INTO post(userid,title,content) values("+id+",\""+title+"\",\""+content+"\")";
-        System.out.println(sql);
+       // System.out.println(sql);
         try{
             con = new ConnectDatabase();
         }catch(Exception e){
@@ -100,14 +102,16 @@ public class postServlet extends HttpServlet {
 
         //插入数据库posttie表
         if(Integer.valueOf(type).equals(1)){
-            sql = "INSERT INTO posttie(postid,type,targetid,state) values("+id+",1,1,2)";
+            sql = "INSERT INTO posttie(postid,type,targetid,state,comefrom,lastdate) values("+id+",1,1,2,0,now())";
         }
         else{
-            sql = "INSERT INTO posttie(postid,type,targetid,state) values("+id+",2,\""+Integer.valueOf(targetid)+"\",2)";
+            sql = "INSERT INTO posttie(postid,type,targetid,state,comefrom,lastdate) values("+id+",2,"+Integer.valueOf(targetid)+",2,"+Integer.valueOf(comefrom)+",now())";
+            sql2 = "UPDATE posttie SET lastdate=now() WHERE id="+Integer.valueOf(comefrom);
         }
-        System.out.println(sql);
+       // System.out.println(sql);
         try{
             con.ExecuteUpdate(sql);
+            con.ExecuteUpdate(sql2);
             if(!con.getResult()){
                 j = new returnJson(13,200,403,"insert postite record error");
                 out.println(j.result());
@@ -130,6 +134,7 @@ public class postServlet extends HttpServlet {
             }
             return;
         }
+
 
         j = new returnJson(13,100,400);
         out.println(j.result());

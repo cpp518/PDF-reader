@@ -16,6 +16,7 @@
     输入密码：<input type="text" name="passwd"/><br/>
     输入标题：<input type="text" name="title"/><br/>
     输入内容：<input type="text" name="content"/><br/>
+    输入属于的帖子：<input type="text" name="comefrom"/><br/>
     输入类型：<input type="text" name="type"/><br/>
     输入目标帖子：<input type="text" name="targetid"/><br>
     <input type="submit" value="提交">

@@ -38,6 +38,9 @@
       <br>
       <a href="deleteBookMarks.jsp.jsp">删除书签</a>
       <br>
+      <a href="post.jsp">发帖</a>
+      <br>
+      <a href="<%=request.getContextPath()%>/showFirstPost">查看帖子</a>
   </center>
 
   </body>

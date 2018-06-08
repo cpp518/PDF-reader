@@ -53,10 +53,12 @@ public class showFileServlet extends HttpServlet {
                     num++;
 
                 }while(rs.next());
+                j.put("total",String.valueOf(num));
                 j.put("book",k);
             }
             //如果rs为空
             else{
+                j.put("total",String.valueOf(num));
                 j.put("book","");
             }
             //System.out.println(j.result());

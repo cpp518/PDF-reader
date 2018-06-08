@@ -39,7 +39,7 @@ public class getBookMarksServlet extends HttpServlet {
             String bookid = request.getParameter("bookid");
             sql = "SELECT bookid,createdate,lastchangedate,title,content,pagenum,state FROM bookmarks WHERE userid = " + id + " AND bookid = " + bookid;
         }
-        System.out.println(sql);
+       // System.out.println(sql);
         try{
             con = new ConnectDatabase();
         }catch(Exception e){
@@ -70,11 +70,14 @@ public class getBookMarksServlet extends HttpServlet {
                             "state",rs.getInt("state"));
 
                     num++;
+
                 }while(rs.next());
+                j.put("total",String.valueOf(num));
                 j.put("bookmarks",k);
             }
             //如果rs为空
             else{
+                j.put("total",String.valueOf(num));
                 j.put("bookmarks","");
             }
             out.println(j.result());
