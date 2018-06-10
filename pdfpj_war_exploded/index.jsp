@@ -41,6 +41,8 @@
       <a href="post.jsp">发帖</a>
       <br>
       <a href="<%=request.getContextPath()%>/showFirstPost">查看帖子</a>
+      <br>
+      <a href="showpostdetail.jsp">看某贴</a>
   </center>
 
   </body>

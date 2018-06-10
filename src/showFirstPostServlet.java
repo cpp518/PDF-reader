@@ -28,6 +28,8 @@ public class showFirstPostServlet extends HttpServlet {
             return;
         }
 
+
+
         try{
             rs = con.Execute(sql);
         }catch(Exception e){

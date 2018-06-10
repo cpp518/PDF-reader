@@ -106,7 +106,7 @@ public class postServlet extends HttpServlet {
         }
         else{
             sql = "INSERT INTO posttie(postid,type,targetid,state,comefrom,lastdate) values("+id+",2,"+Integer.valueOf(targetid)+",2,"+Integer.valueOf(comefrom)+",now())";
-            sql2 = "UPDATE posttie SET lastdate=now() WHERE id="+Integer.valueOf(comefrom);
+            sql2 = "UPDATE posttie SET lastdate=now() WHERE postid="+Integer.valueOf(comefrom);
         }
        // System.out.println(sql);
         try{

@@ -84,7 +84,7 @@ CREATE TABLE `post` (
   PRIMARY KEY (`id`),
   KEY `userid` (`userid`),
   CONSTRAINT `post_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -129,7 +129,7 @@ CREATE TABLE `posttie` (
   CONSTRAINT `posttie_ibfk_6` FOREIGN KEY (`targetid`) REFERENCES `post` (`id`) ON DELETE CASCADE,
   CONSTRAINT `posttie_ibfk_7` FOREIGN KEY (`type`) REFERENCES `posttype` (`id`) ON DELETE CASCADE,
   CONSTRAINT `posttie_ibfk_8` FOREIGN KEY (`state`) REFERENCES `poststate` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -188,4 +188,4 @@ CREATE TABLE `user` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-06-08 14:36:55
+-- Dump completed on 2018-06-10 19:29:09

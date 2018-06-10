@@ -50,4 +50,11 @@ param:username,passwd,type,bookid
 /deleteBookMarks 删除书签
 Method:Post  
 
-/
+/post 发帖
+Method:post
+
+/showPost 看帖
+Method:post
+
+/showPostdetail 看某贴具体内容
+Method:post
