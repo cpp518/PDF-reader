@@ -21,8 +21,6 @@ public class showPostDetailServlet extends HttpServlet {
         returnJson j2= null;
         String sql = null;
         String sql2 = null;
-
-        int num2 = 0;
         int num3 = 0;
         PrintWriter out = response.getWriter();
 

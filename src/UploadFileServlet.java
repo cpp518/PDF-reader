@@ -178,9 +178,13 @@ public class UploadFileServlet extends HttpServlet {
                                 return;
                             }
                         }
-                        else{
+                        else if(str.equals("pic")){
                             UPLOAD_DIRECTORY = "upload/pic/";
                         }
+                        else if(str.equals("head")){
+                            UPLOAD_DIRECTORY = "upload/headpic/";
+                        }
+
                         //System.out.println(UPLOAD_DIRECTORY);
                         //获取加入数据库后的id值并加入到filePath中
                         try {
@@ -238,8 +242,5 @@ public class UploadFileServlet extends HttpServlet {
             j = new returnJson(2,200,406);
             out.println(j.result());
         }
-        // 跳转到 message.jsp
-     /*   getServletContext().getRequestDispatcher("/message.jsp").forward(
-                request, response);*/
     }
 }

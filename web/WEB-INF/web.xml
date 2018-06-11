@@ -74,6 +74,12 @@
         <servlet-name>showPostDetailServlet</servlet-name>
         <servlet-class>showPostDetailServlet</servlet-class>
     </servlet>
+    
+    <servlet>
+        <servlet-name>AttentionServlet</servlet-name>
+        <servlet-class>AttentionServlet</servlet-class>
+    </servlet>
+    
     <servlet-mapping>
         <servlet-name>getUploadFileServlet</servlet-name>
         <url-pattern>/getUploadFile</url-pattern>
@@ -133,6 +139,10 @@
     <servlet-mapping>
         <servlet-name>showPostDetailServlet</servlet-name>
         <url-pattern>/showpostdetial</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AttentionServlet</servlet-name>
+        <url-pattern>/attention</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>

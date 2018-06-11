@@ -21,7 +21,7 @@ UPDATE user set LastloginDate = now() where name = ''
 
 book:
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
-userid  | bookid    | bookname  | author       | introduction | label     |introImage   |   type       | registerDate | page      |   state  | download |
+userid  | bookid    | bookname  | author       | introduction | label     |introImage   |   type       | registerDate | page      |   state  | download | 
 --------|-----------|-----------|--------------|--------------|-----------|-------------|--------------|--------------|-----------|----------|----------|
 int     |int        |varchar(50)|varchar(50)   |varchar(2000) |varchar(50)| tinyint     |  varchar(50) |  datetime    | smallint  |  tinyint | int      |
 --------|-----------|-----------|--------------|--------------|-----------|-------------|--------------|--------------|-----------|---------------------|
@@ -86,7 +86,46 @@ Post
 --------------------------------------------------------
 id | userid | title       | content       | createdate |
 ---|--------|-------------|---------------|------------|
-int| int    | varchar(60) |varchar(2000)  |   datatime |
+int| int    | varchar(60) |text           |   datatime |
 --------------------------------------------------------
 						
 select title,content from post,posttype where bookid = targetid 
+
+
+attention
+------------------------
+id  | userid |targetid |
+----|--------|---------|
+int | int    | int     |
+------------------------
+
+
+agree
+--------------------------------
+id  | userid | bookid | type   |
+----|--------|--------|--------|
+int |int     | int    | tinyint|
+--------------------------------
+
+agreetype
+-----------------
+id     | type   |
+-------|--------|
+tinyint| tinyint|
+-----------------
+
+message
+---------------------------------
+id   | userid | content | type  |
+-----|--------|---------|-------|
+int  | int    | text    |tinyint|
+---------------------------------
+
+messagetype
+---------------------------------
+id   | userid | content | type  |
+-----|--------|---------|-------|
+int  |  int   | text    |tinyint|
+---------------------------------
+
+
