@@ -80,6 +80,10 @@
         <servlet-class>AttentionServlet</servlet-class>
     </servlet>
     
+    <servlet>
+        <servlet-name>MessageServlet</servlet-name>
+        <servlet-class>messageServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>getUploadFileServlet</servlet-name>
         <url-pattern>/getUploadFile</url-pattern>
@@ -143,6 +147,10 @@
     <servlet-mapping>
         <servlet-name>AttentionServlet</servlet-name>
         <url-pattern>/attention</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MessageServlet</servlet-name>
+        <url-pattern>/themessage</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>

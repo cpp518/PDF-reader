@@ -156,17 +156,18 @@ public class UploadFileServlet extends HttpServlet {
                                         + new String(formItems.get(7).getString().getBytes("ISO-8859-1"),"utf-8")+ "')";
                               //  System.out.println(sql);
                                 con.ExecuteUpdate(sql);
-
+                                messageServlet.insertMessage(id,"上传文件成功",0,1);
                                 con.commit();
                                 if(!con.getResult()){
+                                    messageServlet.insertMessage(id,"上传文件失败",0,1);
                                     j = new returnJson(2,200,411,"数据库插入错误");
                                     out.println(j.result());
                                     return;
                                 }
 
                             }catch(Exception e){
-
                                 con.rollback();
+                                messageServlet.insertMessage(id,"上传文件失败",0,1);
                                 con.Close();
                                 if(!con.getResult()){
                                     j = new returnJson(2,200,410);

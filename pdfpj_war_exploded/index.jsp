@@ -45,6 +45,8 @@
       <a href="showpostdetail.jsp">看某贴</a>
       <br>
       <a href="attention.jsp">关注操作</a>
+      <br>
+      <a href="theMessage.jsp">查看消息</a>
   </center>
 
   </body>

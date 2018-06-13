@@ -69,9 +69,6 @@ public class showFileServlet extends HttpServlet {
             out.println(j.result());
             return;
         }
-
-
-
     }
 
     public void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException{

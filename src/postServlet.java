@@ -21,6 +21,7 @@ public class postServlet extends HttpServlet {
         String type = request.getParameter("type");
         String targetid = request.getParameter("targetid");
         String comefrom = request.getParameter("comefrom");
+        int targetUserid = Integer.valueOf(request.getParameter("targetUserid"));
         int result = 0;
         int id = 0;
         result = login.in(username,passwd);
@@ -35,7 +36,6 @@ public class postServlet extends HttpServlet {
             return;
         }
         id = login.getId();
-
         //插入数据库post表
         String title = new String(request.getParameter("title").getBytes("ISO-8859-1"),"utf-8");
         String content =new String(request.getParameter("content").getBytes("ISO-8859-1"),"utf-8");
@@ -111,7 +111,10 @@ public class postServlet extends HttpServlet {
        // System.out.println(sql);
         try{
             con.ExecuteUpdate(sql);
-            con.ExecuteUpdate(sql2);
+            if(Integer.valueOf(type).equals(1)){
+                con.ExecuteUpdate(sql2);
+                messageServlet.insertMessage(targetUserid,"有人回复您啦！！！！",Integer.valueOf(comefrom),3);
+            }
             if(!con.getResult()){
                 j = new returnJson(13,200,403,"insert postite record error");
                 out.println(j.result());

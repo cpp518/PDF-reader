@@ -8,13 +8,13 @@ import java.io.PrintWriter;
 import java.sql.ResultSet;
 
 public class AttentionServlet extends HttpServlet {
+    private String targetid = "";
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException {
         response.setContentType("text/html;charset=utf-8");
         returnJson j = null;
         ResultSet rs = null;
         PrintWriter out = null;
         int id = 0;
-        String targetid = "";
         String username = "";
         String sql = "";
         String passwd = "";
@@ -148,6 +148,7 @@ public class AttentionServlet extends HttpServlet {
         }
         try{
             con.ExecuteUpdate(sql);
+            messageServlet.insertMessage(Integer.valueOf(targetid),"有人关注你啦",0,2);
             con.commit();
             if(!con.getResult()){
                 try{

@@ -14,13 +14,13 @@ public class uploadBookMarksServlet extends HttpServlet {
             ServletException,IOException {
 
         ConnectDatabase con = null;
-        ResultSet rs = null;
         returnJson j = null;
         PrintWriter out = response.getWriter();
         //用户登录验证
         String sql = null;
         String username = request.getParameter("username");
         String passwd = request.getParameter("passwd");
+
         int result = 0;
         result = login.in(username,passwd);
         switch(result){
@@ -34,10 +34,12 @@ public class uploadBookMarksServlet extends HttpServlet {
             return;
         }
 
+
         //上传笔记
 
         //用id判断是否存在
         String id = request.getParameter("id");
+
         //System.out.println(id);
         if(id == ""){
             sql = "INSERT INTO bookmarks(userid,bookid,createdate,lastchangedate,title,content,pagenum) values ("+login.getId()
@@ -65,6 +67,7 @@ public class uploadBookMarksServlet extends HttpServlet {
         //执行sql语句
         try{
             con.ExecuteUpdate(sql);
+            messageServlet.insertMessage(login.getId(),"上传书签成功",0,1);
         }catch (Exception e){
             con.rollback();
             if(!con.getResult()){
@@ -74,13 +77,19 @@ public class uploadBookMarksServlet extends HttpServlet {
                 j = new returnJson(7, 200, 404);
             }
             out.println(j.result());
+            try{
+                con.Close();
+            }catch(Exception f){
+                return;
+            }
             return;
         }
         //事务提交
         try{
             con.commit();
-            System.out.println(con.getResult());
+            //System.out.println(con.getResult());
         }catch(Exception e){
+            messageServlet.insertMessage(login.getId(),"上传书签失败",0,1);
             j = new returnJson(7,200,411);
             out.println(j.result());
             return;
