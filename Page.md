@@ -58,3 +58,6 @@ Method:post
 
 /showPostdetail 看某贴具体内容
 Method:post
+
+/themessage 消息提醒
+Method:post

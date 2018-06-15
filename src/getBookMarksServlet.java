@@ -33,11 +33,11 @@ public class getBookMarksServlet extends HttpServlet {
         int id = login.getId();
         String type= request.getParameter("type");
         if(type.equals("ALL")){
-            sql = "SELECT bookid,createdate,lastchangedate,title,content,pagenum,state FROM bookmarks WHERE userid = " + id;
+            sql = "SELECT bookid,createdate,lastchangedate,title,content,pagenum,state,agree FROM bookmarks WHERE userid = " + id;
         }
         else{
             String bookid = request.getParameter("bookid");
-            sql = "SELECT bookid,createdate,lastchangedate,title,content,pagenum,state FROM bookmarks WHERE userid = " + id + " AND bookid = " + bookid;
+            sql = "SELECT bookid,createdate,lastchangedate,title,content,pagenum,state,agree FROM bookmarks WHERE userid = " + id + " AND bookid = " + bookid;
         }
        // System.out.println(sql);
         try{
@@ -67,7 +67,8 @@ public class getBookMarksServlet extends HttpServlet {
                             "title",rs.getString("title"),
                             "content",rs.getString("content"),
                            "pagenum",rs.getInt("pagenum"),
-                            "state",rs.getInt("state"));
+                            "state",rs.getInt("state"),
+                            "agree",rs.getString("agree"));
 
                     num++;
 

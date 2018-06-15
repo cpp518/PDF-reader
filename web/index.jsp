@@ -47,6 +47,10 @@
       <a href="attention.jsp">关注操作</a>
       <br>
       <a href="theMessage.jsp">查看消息</a>
+      <br>
+      <a href="agree.jsp">点赞操作</a>
+      <br>
+      <a href="findpassword.jsp">找回密码</a>
   </center>
 
   </body>

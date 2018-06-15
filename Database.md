@@ -133,8 +133,11 @@ tinyint  |tinyint|
 
 
 findpassword
-----------------------------------
-id  | userid | createdate| 
+---------------------------------------
+id  | userid | createdate| keyvalue   |
+----|--------|-----------|------------|
+int | int    |varchar(20)| varchar(70)|
+--------------------------------------|
 
 
 

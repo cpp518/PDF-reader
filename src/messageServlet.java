@@ -28,6 +28,7 @@ public class messageServlet extends HttpServlet {
             out.println(j.result());
             return;
         }
+        // type决定了消息的类型：1-查询消息，2-将消息设为已看
         switch(Integer.valueOf(request.getParameter("type"))) {
             case 1:
                 rs = getMessage(login.getId());
@@ -47,8 +48,10 @@ public class messageServlet extends HttpServlet {
                                     "jumpuser",rs.getString("jumpuser"));
                             num++;
                         } while (rs.next());
+                        j.put("messageTotal",String.valueOf(num));
                         j.put("message", k);
                     } else {
+                        j.put("messageTotal","0");
                         j.put("message", "");
                     }
                     out.println(j.result());
@@ -59,13 +62,13 @@ public class messageServlet extends HttpServlet {
                 }
                 break;
             case 2:
-                changeMessage(login.getId());
+                changeMessage(request.getParameter("id"));
         }
     }
     public static ResultSet getMessage(int id){
         ResultSet rs = null;
         String getSql = "SELECT message.id,userid,username,content,type,createdate,jumppost,jumpuser FROM user,message WHERE userid="+id+" AND user.id=userid order by type,createdate desc";
-        System.out.println("getSql: "+getSql);
+       // System.out.println("getSql: "+getSql);
         try{
             con = new ConnectDatabase();
         }catch (Exception e){
@@ -79,7 +82,8 @@ public class messageServlet extends HttpServlet {
         }
 
     }
-
+    //type决定了用到哪个sql语句，3-和帖子相关，2-与人相关，1-点击消息不能跳转
+    //jump决定了跳到哪个位置。
     public static boolean insertMessage(int userid,String content,int jump,int  type){
             int id = userid;
             String insertSql = null;
@@ -92,7 +96,7 @@ public class messageServlet extends HttpServlet {
             else{
                 insertSql = "INSERT INTO message(userid,content,type,createdate) values (" + id + ",\"" + content + "\",1,now())";
             }
-            System.out.println("insertSql: "+insertSql);
+          //  System.out.println("insertSql: "+insertSql);
             try{
                 con = new ConnectDatabase();
             }catch (Exception e){
@@ -115,7 +119,7 @@ public class messageServlet extends HttpServlet {
         return true;
     }
 
-    public static boolean changeMessage(int id){
+    public static boolean changeMessage(String id){
         ConnectDatabase con = null;
         String changeSql = "UPDATE message SET type=2 WHERE id="+id;
         System.out.println("changeSql: "+changeSql);

@@ -84,6 +84,19 @@
         <servlet-name>MessageServlet</servlet-name>
         <servlet-class>messageServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AgreeServlet</servlet-name>
+        <servlet-class>agreeServlet</servlet-class>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>findPassword</servlet-name>
+        <servlet-class>findPasswordServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>changePassword</servlet-name>
+        <servlet-class>changePasswordServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>getUploadFileServlet</servlet-name>
         <url-pattern>/getUploadFile</url-pattern>
@@ -151,6 +164,18 @@
     <servlet-mapping>
         <servlet-name>MessageServlet</servlet-name>
         <url-pattern>/themessage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AgreeServlet</servlet-name>
+        <url-pattern>/agree</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>findPassword</servlet-name>
+        <url-pattern>/findpassword</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>changePassword</servlet-name>
+        <url-pattern>/changepassword</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>

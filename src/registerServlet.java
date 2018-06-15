@@ -45,7 +45,6 @@ public class registerServlet extends HttpServlet{
                 if(database.getResult()){
                     if(!rs.next()){
                         //添加新用户到数据库
-
                         String sql = "INSERT INTO user(username,nickname,passwd,email,permit) values('"+request.getParameter("name")+"','"+request.getParameter("nick")+"','"+request.getParameter("passwd")+"','"+request.getParameter("email")+"',0)";
                         database.ExecuteUpdate(sql);
                         database.commit();

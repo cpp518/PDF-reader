@@ -41,19 +41,19 @@ public class AttentionServlet extends HttpServlet {
 
 
         int method = Integer.valueOf(request.getParameter("method"));
-        System.out.println(method);
+        //System.out.println(method);
+        //1-关注了谁，2-关注，3-取消关注，4-被谁关注 5-查询关系
         switch (method){
             //关注了谁
             case 1:
                 sql = "SELECT targetid,username,nickname FROM attention,user WHERE targetid=user.id AND userid="+id+" order by username";
-                System.out.println(sql);
+                //System.out.println(sql);
                 AttentionWho(sql,out);
                 break;
             //关注
             case 2:
                 sql = "INSERT INTO attention(userid,targetid) values ("+id+","+targetid+")";
              //   System.out.println(sql);
-
                 Attention(sql,out);
                 break;
             //取消关注
@@ -65,17 +65,16 @@ public class AttentionServlet extends HttpServlet {
             //被谁关注
             case 4:
                 sql = "SELECT userid,username,nickname FROM attention,user WHERE targetid="+id+" AND user.id=userid order by username";
-                System.out.println(sql);
+              //  System.out.println(sql);
                 AttentionByWho(sql,out);
                 break;
             //是否存在关系
             case 5:
                 sql = "SELECT * FROM attention WHERE targetid="+targetid+" AND userid="+id+" OR targetid="+id+" AND userid="+targetid;
-                System.out.println(sql);
+              //  System.out.println(sql);
                 AttentionFind(sql,out,id);
         }
     }
-
     public void AttentionWho(String sql,PrintWriter out){
         ConnectDatabase con = null;
         returnJson j = null;
@@ -355,9 +354,4 @@ public class AttentionServlet extends HttpServlet {
             return;
         }
     }
-
-
-
-
-
 }
