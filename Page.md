@@ -52,12 +52,24 @@ Method:Post
 
 /post 发帖
 Method:post
+Param:Username,passwd,type,targetid,comfrom.targetUserid,title,content
 
 /showPost 看帖
 Method:post
 
 /showPostdetail 看某贴具体内容
 Method:post
+Param:id
 
 /themessage 消息提醒
 Method:post
+Param:username,passwd,type,id
+
+/findPassword 找回密码
+Param:username,email
+
+/changePassword 更改密码
+Param:username,keyvalue
+
+/Attention 关注
+Param:username,passwd,targetid,method

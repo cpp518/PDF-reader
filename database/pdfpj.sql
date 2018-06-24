@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.10, for Win64 (x86_64)
 --
--- Host: localhost    Database: pdfpj
+-- Host: localhost    Database: pdfpjpj
 -- ------------------------------------------------------
 -- Server version	5.7.10-log
 
